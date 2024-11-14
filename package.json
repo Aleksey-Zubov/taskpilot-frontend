@@ -1,0 +1,12 @@
+{
+  "name": "zira-frontend",
+  "version": "1.0.0",
+  "description": "Jira clone (pet project)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Aleksey Zubov",
+  "license": "ISC"
+}
