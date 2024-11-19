@@ -1,7 +1,5 @@
-module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-    cssnano: {}
-  }
-}
+export const plugins = {
+  tailwindcss: {},
+  autoprefixer: {},
+  cssnano: {},
+};
