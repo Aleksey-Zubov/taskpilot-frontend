@@ -32,10 +32,6 @@ export default ({ mode, path }: BuildOptions): Configuration => {
             },
           },
         },
-        {
-          test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
-        },
       ],
     },
     plugins: [
