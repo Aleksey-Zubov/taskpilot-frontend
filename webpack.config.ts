@@ -11,7 +11,7 @@ export default (env: EnvVariables): Configuration => {
     path: {
       entry: path.resolve(__dirname, 'src', 'index.tsx'),
       output: path.resolve(__dirname, 'build'),
-      html: path.resolve(__dirname, 'src', 'index.html'),
+      html: path.resolve(__dirname, 'public', 'index.html'),
     },
   };
 
