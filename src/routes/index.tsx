@@ -6,6 +6,7 @@ const AppRoutes = () => (
   <Routes>
     <Route path="/sign-up" element={<SignUp />} />
     <Route path="/sign-in" element={<SignIn />} />
+    <Route path="*" element={<div />} />
   </Routes>
 );
 

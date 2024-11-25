@@ -1,7 +1,11 @@
-const Input = () => {
+import { InputHTMLAttributes } from 'react';
+
+import './styles.scss';
+
+const Input = (props: InputHTMLAttributes<HTMLInputElement>) => {
   return (
     <div className="input-component">
-      <input type="text" className="input-component__input" />
+      <input {...props} className="input-component__input" />
     </div>
   );
 };
