@@ -2,6 +2,7 @@ import { useState, MouseEvent } from 'react';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 
+import '../form.common.scss';
 import './styles.scss';
 
 const SignUpForm = () => {
@@ -13,20 +14,20 @@ const SignUpForm = () => {
   };
 
   return (
-    <form className="form-component">
-      <div className="form-component__input">
+    <form className="form-component sign-up-form">
+      <div className="form-component__input sign-up-form__input">
         <Input type="text" placeholder="Имя" />
       </div>
-      <div className="form-component__input">
+      <div className="form-component__input sign-up-form__input">
         <Input type="text" placeholder="Фамилия" />
       </div>
-      <div className="form-component__input">
+      <div className="form-component__input sign-up-form__input">
         <Input type="email" placeholder="Электронная почта" />
       </div>
-      <div className="form-component__input">
+      <div className="form-component__input sign-up-form__input">
         <Input type="password" placeholder="Пароль" />
       </div>
-      <div className="form-component__input">
+      <div className="form-component__input sign-up-form__input">
         <Input type="password" placeholder="Повторите пароль" />
       </div>
       <div className="form-component__button">

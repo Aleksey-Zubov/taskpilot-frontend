@@ -1,14 +1,4 @@
-.form-component {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 20px;
-
-  &__input,
-  &__button {
-    grid-column: span 2;
-  }
-
+.sign-up-form {
   &__input:nth-child(1),
   &__input:nth-child(2) {
     grid-column: span 1;

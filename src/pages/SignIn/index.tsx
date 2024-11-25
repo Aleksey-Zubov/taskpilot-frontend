@@ -4,7 +4,7 @@ import SignInContainer from '../../containers/SignInContainer';
 const SignInPage = () => {
   return (
     <AuthPageLayout>
-      <SignInContainer />;
+      <SignInContainer />
     </AuthPageLayout>
   );
 };
