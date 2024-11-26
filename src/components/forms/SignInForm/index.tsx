@@ -2,7 +2,7 @@ import { useState, MouseEvent } from 'react';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 
-import '../form.common.scss';
+import '../../../styles/form.styles';
 
 const SignInForm = () => {
   const [loading, setLoading] = useState(false);
