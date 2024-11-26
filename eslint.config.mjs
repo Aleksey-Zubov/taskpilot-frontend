@@ -23,7 +23,11 @@ export default [
         // Указываем, что доступно в глобальной области видимости (для браузера)
         document: 'readonly',
         window: 'readonly',
+        console: 'readonly',
         HTMLElement: 'readonly',
+        HTMLInputElement: 'readonly',
+        HTMLButtonElement: 'readonly',
+        // Указываем, что доступно в глобальной области видимости (для node)
         __dirname: 'readonly',
       },
     },

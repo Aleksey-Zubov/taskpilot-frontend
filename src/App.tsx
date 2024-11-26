@@ -1,5 +1,12 @@
-import './index.scss';
+import AppLayout from './components/layouts/AppLayout';
+import AppRoutes from './routes';
 
-const App = () => <h1 className="text-base">Zira</h1>;
+const App = () => {
+  return (
+    <AppLayout>
+      <AppRoutes />
+    </AppLayout>
+  );
+};
 
 export default App;

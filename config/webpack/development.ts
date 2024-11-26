@@ -10,6 +10,7 @@ export default (options: BuildOptions): Configuration => {
   const devServer: DevServerConfiguration = {
     port,
     open: true,
+    historyApiFallback: true,
   };
   const rules = [
     {
