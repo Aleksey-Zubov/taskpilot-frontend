@@ -13,6 +13,9 @@ export default (env: EnvVariables): Configuration => {
       output: path.resolve(__dirname, 'build'),
       html: path.resolve(__dirname, 'public', 'index.html'),
     },
+    alias: {
+      src: path.resolve(__dirname, 'src'), // Убедитесь, что путь верный
+    },
   };
 
   return env.mode === 'production' ? production(options) : development(options);

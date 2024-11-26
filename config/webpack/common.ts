@@ -3,7 +3,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import type { Configuration } from 'webpack';
 import { BuildOptions } from './types';
 
-export default ({ mode, path }: BuildOptions): Configuration => {
+export default ({ mode, path, alias }: BuildOptions): Configuration => {
   const { entry, output, html } = path;
   return {
     mode,
@@ -15,6 +15,7 @@ export default ({ mode, path }: BuildOptions): Configuration => {
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      alias: { ...alias },
     },
     module: {
       rules: [
