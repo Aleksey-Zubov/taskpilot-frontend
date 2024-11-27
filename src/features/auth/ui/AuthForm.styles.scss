@@ -1,11 +1,3 @@
-.authorization-header {
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 120%;
-  color: #303030;
-  padding-left: 20px;
-}
-
 .form-container {
   padding: 20px;
   background-color: #f4f4f6;
@@ -23,8 +15,10 @@
     grid-column: span 2;
   }
 
-  &__input:nth-child(1),
-  &__input:nth-child(2) {
-    grid-column: span 1;
-  }
+  &__input {
+    &._signup:nth-child(1),
+    &._signup:nth-child(2) {
+      grid-column: span 1;
+    }
+  }  
 }
