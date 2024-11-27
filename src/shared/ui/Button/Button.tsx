@@ -1,12 +1,12 @@
 import { ButtonHTMLAttributes } from 'react';
 
-import './styles.scss';
+import './Button.styles.scss';
 
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
 }
 
-const Button = ({ loading, children, onClick }: IProps) => {
+export const Button = ({ loading, children, onClick }: IProps) => {
   return (
     <button
       className={'button-component' + (loading ? ' _loading' : '')}
@@ -16,5 +16,3 @@ const Button = ({ loading, children, onClick }: IProps) => {
     </button>
   );
 };
-
-export default Button;

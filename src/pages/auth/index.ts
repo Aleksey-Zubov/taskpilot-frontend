@@ -1,2 +1,2 @@
-export { SignInPage } from './ui/SignInPage';
-export { SignUpPage } from './ui/SignUpPage';
+export { SignInPage } from './SignInPage';
+export { SignUpPage } from './SignUpPage';

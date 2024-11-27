@@ -1,4 +1,4 @@
-.authorization {
+.authorization-page {
   display: flex;
   gap: 30px;
   justify-content: space-between;
@@ -11,7 +11,7 @@
   flex-direction: column;
   overflow-y: auto;
 
-  &__main {
+  &__content {
     flex: 1 1 auto;
     display: flex;
     justify-content: center;
