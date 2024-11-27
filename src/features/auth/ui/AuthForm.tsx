@@ -1,4 +1,3 @@
-import { MouseEvent } from 'react';
 import { Input, Button } from 'src/shared/ui';
 import { TAuthFormField, TAuthFormType } from '../model/AuthForm.types';
 
@@ -9,6 +8,7 @@ interface IProps {
   fields: TAuthFormField[];
   loading: boolean;
   onSubmit: () => void;
+  onChange: (name: string, value: string) => void;
 }
 
 export const AuthForm = ({
@@ -16,25 +16,26 @@ export const AuthForm = ({
   fields,
   loading,
   onSubmit,
+  onChange,
 }: IProps) => {
-  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    onSubmit();
-  };
-
   return (
     <div className="form-container">
-      <form className="form-component">
+      <form className="form-component" onSubmit={(e) => e.preventDefault()}>
         {fields.map(({ name, type, placeholder }, index) => (
           <div
             key={index + name}
             className={'form-component__input' + ` _${formType}`}
           >
-            <Input name={name} type={type} placeholder={placeholder} />
+            <Input
+              name={name}
+              type={type}
+              placeholder={placeholder}
+              onChange={(e) => onChange(name, e.target.value)}
+            />
           </div>
         ))}
         <div className="form-component__button">
-          <Button loading={loading} onClick={handleSubmit}>
+          <Button loading={loading} onClick={onSubmit}>
             {formType === 'signin' ? 'Войти' : 'Создать аккаунт'}
           </Button>
         </div>
