@@ -1,26 +1,35 @@
 import { Input, Button } from 'src/shared/ui';
-import { TAuthFormField, TAuthFormType } from '../model/AuthForm.types';
+import {
+  ISignInFormData,
+  ISignUpFormData,
+  // ISignInFormData,
+  // ISignUpFormData,
+  TAuthFormField,
+  TAuthFormType,
+} from '../model/AuthForm.types';
+import { useAuthForm } from '../model/useAuthForm.hook';
 
 import './AuthForm.styles.scss';
 
 interface IProps {
-  type: TAuthFormType;
+  formType: TAuthFormType;
   fields: TAuthFormField[];
-  loading: boolean;
-  onSubmit: () => void;
-  onChange: (name: string, value: string) => void;
+  initialFormState: ISignInFormData | ISignUpFormData;
 }
 
-export const AuthForm = ({
-  type: formType,
-  fields,
-  loading,
-  onSubmit,
-  onChange,
-}: IProps) => {
+export const AuthForm = ({ formType, fields, initialFormState }: IProps) => {
+  const { loading, handleSubmit, handleChange } = useAuthForm(
+    formType,
+    initialFormState,
+  );
+
   return (
     <div className="form-container">
-      <form className="form-component" onSubmit={(e) => e.preventDefault()}>
+      <form
+        name={formType}
+        className="form-component"
+        onSubmit={(e) => e.preventDefault()}
+      >
         {fields.map(({ name, type, placeholder }, index) => (
           <div
             key={index + name}
@@ -30,12 +39,12 @@ export const AuthForm = ({
               name={name}
               type={type}
               placeholder={placeholder}
-              onChange={(e) => onChange(name, e.target.value)}
+              onChange={(e) => handleChange(name, e.target.value)}
             />
           </div>
         ))}
         <div className="form-component__button">
-          <Button loading={loading} onClick={onSubmit}>
+          <Button loading={loading} onClick={handleSubmit}>
             {formType === 'signin' ? 'Войти' : 'Создать аккаунт'}
           </Button>
         </div>

@@ -1,13 +1,21 @@
 import { AuthPageLayout } from 'src/shared/ui';
 import { AuthForm } from 'src/features/auth';
-import { useAuthForm } from 'src/features/auth/model/useAuthForm.hook';
-import { TAuthFormField } from 'src/features/auth/model/AuthForm.types';
+import {
+  ISignUpFormData,
+  TAuthFormField,
+} from 'src/features/auth/model/AuthForm.types';
 
 import 'src/shared/styles/AuthPage.styles.scss';
 
-export const SignUpPage = () => {
-  const { loading, handleChange, handleSubmit } = useAuthForm('signup');
+const initialState: ISignUpFormData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  repeatPassword: '',
+};
 
+export const SignUpPage = () => {
   const fields: TAuthFormField[] = [
     { name: 'firstName', type: 'text', placeholder: 'Имя' },
     { name: 'lastName', type: 'text', placeholder: 'Фамилия' },
@@ -24,11 +32,9 @@ export const SignUpPage = () => {
     <AuthPageLayout>
       <h1 className="authorization-header">Создайте аккаунт</h1>
       <AuthForm
-        type="signup"
+        formType="signup"
         fields={fields}
-        loading={loading}
-        onSubmit={handleSubmit}
-        onChange={handleChange}
+        initialFormState={initialState}
       />
     </AuthPageLayout>
   );

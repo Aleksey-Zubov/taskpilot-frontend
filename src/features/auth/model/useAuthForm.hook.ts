@@ -1,15 +1,22 @@
-import { useState } from 'react';
-import { TAuthFormType } from './AuthForm.types';
+import { useCallback, useState } from 'react';
+import {
+  ISignInFormData,
+  ISignUpFormData,
+  TAuthFormType,
+} from './AuthForm.types';
 
-export const useAuthForm = (type: TAuthFormType) => {
-  const [formData, setFormData] = useState({});
+export const useAuthForm = (
+  type: TAuthFormType,
+  initialState: ISignInFormData | ISignUpFormData,
+) => {
+  const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (name: string, value: string) => {
+  const handleChange = useCallback((name: string, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     setLoading(true);
     setTimeout(() => {
       try {
@@ -23,8 +30,13 @@ export const useAuthForm = (type: TAuthFormType) => {
       } finally {
         setLoading(false);
       }
-    }, 2000);
-  };
+    }, 1500);
+  }, [formData]);
 
-  return { loading, handleChange, handleSubmit };
+  return {
+    loading,
+    formData,
+    handleChange,
+    handleSubmit,
+  };
 };
