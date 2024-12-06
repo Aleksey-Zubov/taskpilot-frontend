@@ -24,6 +24,7 @@ export default [
         document: 'readonly',
         window: 'readonly',
         console: 'readonly',
+        setTimeout: 'readonly',
         HTMLElement: 'readonly',
         HTMLInputElement: 'readonly',
         HTMLButtonElement: 'readonly',
@@ -44,6 +45,16 @@ export default [
       'react/react-in-jsx-scope': 'off', // Не нужно импортировать React в новом JSX
       'react/prop-types': 'off', // Не используем PropTypes в TypeScript
       '@typescript-eslint/explicit-module-boundary-types': 'off', // Отключаем обязательность типов у экспорта
+      "no-unused-vars": "off",
+      "no-console": "warn",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "vars": "all", // Проверяет все переменные
+          "args": "after-used", // Проверяет аргументы функций только после использования
+          "ignoreRestSiblings": true // Игнорирует остаточные параметры (rest properties)
+        }
+    ]
     },
     settings: {
       react: {

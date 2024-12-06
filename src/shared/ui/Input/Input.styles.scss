@@ -6,10 +6,11 @@
   line-height: 100%;
   color: #a6acbf;
   background-color: #fff;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   border-radius: 8px;
   transition: all .3s ease;
   cursor: text;
+  position: relative;
 
   &__input {
     width: 100%;
@@ -19,6 +20,19 @@
     transition: none;
     border-radius: 8px;
     outline: none;
-    border: none;
+    border: none; 
+  }
+
+  &__error-message {
+    position: absolute;
+    bottom: -12px;
+    left: 5px;
+    line-height: 10px;
+    font-size: 10px;
+    color: red;
+  }
+
+  &._error {
+    border-color: red
   }
 }

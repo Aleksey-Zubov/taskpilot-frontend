@@ -1,40 +1,58 @@
-import { MouseEvent } from 'react';
 import { Input, Button } from 'src/shared/ui';
-import { TAuthFormField, TAuthFormType } from '../model/AuthForm.types';
+import {
+  TAuthForm,
+  TAuthFormField,
+  TAuthFormType,
+} from '../model/AuthForm.types';
+import { useAuthForm } from '../model/useAuthForm.hook';
 
 import './AuthForm.styles.scss';
 
 interface IProps {
-  type: TAuthFormType;
+  formType: TAuthFormType;
   fields: TAuthFormField[];
-  loading: boolean;
-  onSubmit: () => void;
+  initialFormState: TAuthForm;
 }
 
-export const AuthForm = ({
-  type: formType,
-  fields,
-  loading,
-  onSubmit,
-}: IProps) => {
-  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    onSubmit();
-  };
+export const AuthForm = ({ formType, fields, initialFormState }: IProps) => {
+  const {
+    loading,
+    handleSubmit,
+    handleChange,
+    formData,
+    handleBlur,
+    isFormValid,
+  } = useAuthForm(formType, initialFormState);
 
   return (
     <div className="form-container">
-      <form className="form-component">
+      <form
+        name={formType}
+        className="form-component"
+        onSubmit={(e) => e.preventDefault()}
+      >
         {fields.map(({ name, type, placeholder }, index) => (
           <div
             key={index + name}
             className={'form-component__input' + ` _${formType}`}
           >
-            <Input name={name} type={type} placeholder={placeholder} />
+            <Input
+              name={name}
+              type={type}
+              placeholder={placeholder}
+              onChange={(e) => handleChange(name, e.target.value)}
+              inputTouched={formData[name]?.isTouched}
+              error={formData[name]?.error}
+              onBlur={(e) => handleBlur(name, e.target.value)}
+            />
           </div>
         ))}
         <div className="form-component__button">
-          <Button loading={loading} onClick={handleSubmit}>
+          <Button
+            loading={loading}
+            onClick={handleSubmit}
+            disabled={!isFormValid}
+          >
             {formType === 'signin' ? 'Войти' : 'Создать аккаунт'}
           </Button>
         </div>

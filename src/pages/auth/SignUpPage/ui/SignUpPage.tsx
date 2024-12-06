@@ -1,22 +1,59 @@
-import { useState } from 'react';
 import { AuthPageLayout } from 'src/shared/ui';
 import { AuthForm } from 'src/features/auth';
-import { TAuthFormField } from 'src/features/auth/model/AuthForm.types';
+import {
+  TAuthForm,
+  TAuthFormField,
+} from 'src/features/auth/model/AuthForm.types';
 
 import 'src/shared/styles/AuthPage.styles.scss';
 
+const initialState: TAuthForm = {
+  firstName: { value: '', isTouched: false, error: '' },
+  lastName: { value: '', isTouched: false, error: '' },
+  email: {
+    value: '',
+    isTouched: false,
+    error: '',
+    validation: {
+      required: true,
+      email: true,
+    },
+  },
+  password: {
+    value: '',
+    isTouched: false,
+    error: '',
+    validation: {
+      required: true,
+      minLength: 6,
+      maxLength: 20,
+    },
+  },
+  repeatPassword: {
+    value: '',
+    isTouched: false,
+    error: '',
+    validation: {
+      required: true,
+      repeatField: 'password',
+    },
+  },
+};
+
 export const SignUpPage = () => {
-  const [loading, setLoading] = useState(false);
-
-  const handleClick = () => {
-    setLoading(!loading);
-  };
-
   const fields: TAuthFormField[] = [
     { name: 'firstName', type: 'text', placeholder: 'Имя' },
     { name: 'lastName', type: 'text', placeholder: 'Фамилия' },
-    { name: 'email', type: 'email', placeholder: 'Электронная почта' },
-    { name: 'password', type: 'password', placeholder: 'Пароль' },
+    {
+      name: 'email',
+      type: 'email',
+      placeholder: 'Электронная почта',
+    },
+    {
+      name: 'password',
+      type: 'password',
+      placeholder: 'Пароль',
+    },
     {
       name: 'repeatPassword',
       type: 'password',
@@ -24,14 +61,15 @@ export const SignUpPage = () => {
     },
   ];
 
+  console.log('sign-up page render');
+
   return (
     <AuthPageLayout>
       <h1 className="authorization-header">Создайте аккаунт</h1>
       <AuthForm
-        type="signup"
+        formType="signup"
         fields={fields}
-        loading={loading}
-        onSubmit={handleClick}
+        initialFormState={initialState}
       />
     </AuthPageLayout>
   );
