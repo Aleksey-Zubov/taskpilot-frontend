@@ -26,7 +26,7 @@
     transition: opacity .2s;
   }
   &:hover:before {
-    opacity: 0.05;
+    opacity: 0.1;
   }
 
   &._loading {
@@ -45,6 +45,9 @@
       border-bottom-color: transparent;
       animation: rotation 1s linear infinite;
     }
+  }
+  &:disabled:hover:before {
+    opacity: 0;
   }
 }
 

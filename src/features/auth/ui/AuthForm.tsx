@@ -1,9 +1,6 @@
 import { Input, Button } from 'src/shared/ui';
 import {
-  ISignInFormData,
-  ISignUpFormData,
-  // ISignInFormData,
-  // ISignUpFormData,
+  TAuthForm,
   TAuthFormField,
   TAuthFormType,
 } from '../model/AuthForm.types';
@@ -14,14 +11,18 @@ import './AuthForm.styles.scss';
 interface IProps {
   formType: TAuthFormType;
   fields: TAuthFormField[];
-  initialFormState: ISignInFormData | ISignUpFormData;
+  initialFormState: TAuthForm;
 }
 
 export const AuthForm = ({ formType, fields, initialFormState }: IProps) => {
-  const { loading, handleSubmit, handleChange } = useAuthForm(
-    formType,
-    initialFormState,
-  );
+  const {
+    loading,
+    handleSubmit,
+    handleChange,
+    formData,
+    handleBlur,
+    isFormValid,
+  } = useAuthForm(formType, initialFormState);
 
   return (
     <div className="form-container">
@@ -40,11 +41,18 @@ export const AuthForm = ({ formType, fields, initialFormState }: IProps) => {
               type={type}
               placeholder={placeholder}
               onChange={(e) => handleChange(name, e.target.value)}
+              inputTouched={formData[name]?.isTouched}
+              error={formData[name]?.error}
+              onBlur={(e) => handleBlur(name, e.target.value)}
             />
           </div>
         ))}
         <div className="form-component__button">
-          <Button loading={loading} onClick={handleSubmit}>
+          <Button
+            loading={loading}
+            onClick={handleSubmit}
+            disabled={!isFormValid}
+          >
             {formType === 'signin' ? 'Войти' : 'Создать аккаунт'}
           </Button>
         </div>

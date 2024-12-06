@@ -1,18 +1,24 @@
+import { TInputValidateOptions } from 'src/shared/types/input';
+
 export type TAuthFormType = 'signin' | 'signup';
 
 export type TAuthFormField = {
-  name: keyof ISignInFormData | keyof ISignUpFormData;
+  name: keyof TAuthForm;
   type: string;
   placeholder: string;
 };
 
-export interface ISignInFormData {
-  email: string;
-  password: string;
-}
+export type TAuthFormFieldState = {
+  value: string;
+  isTouched: boolean;
+  error: string;
+  validation?: TInputValidateOptions<TAuthForm>;
+};
 
-export interface ISignUpFormData extends ISignInFormData {
-  firstName: string;
-  lastName: string;
-  repeatPassword: string;
-}
+export type TAuthForm = {
+  email: TAuthFormFieldState;
+  password: TAuthFormFieldState;
+  firstName?: TAuthFormFieldState;
+  lastName?: TAuthFormFieldState;
+  repeatPassword?: TAuthFormFieldState;
+};
